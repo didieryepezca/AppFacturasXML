@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts="urn:un:unece:uncefact:documentation:2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2" xmlns:sac="urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1" xmlns:udt="urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ext:UBLExtensions>
+    <ext:UBLExtension>
+      <ext:ExtensionContent>
+        <sac:AdditionalInformation>
+          <sac:AdditionalMonetaryTotal>
+            <cbc:ID>1001</cbc:ID>
+            <cbc:PayableAmount currencyID="PEN">677.97</cbc:PayableAmount>
+          </sac:AdditionalMonetaryTotal>
+          <sac:AdditionalProperty>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Value>OCHOCIENTOS CON 0/100 SOLES</cbc:Value>
+          </sac:AdditionalProperty>
+        </sac:AdditionalInformation>
+      </ext:ExtensionContent>
+    </ext:UBLExtension>
+    <ext:UBLExtension>
+      <ext:ExtensionContent><Signature Id="SignatureEHUB" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>8mTtAZ7EtMtLaan2W9LriD6i5Sg=</DigestValue></Reference></SignedInfo><SignatureValue>QQVFyPL6E5cW4tSgeM3gDKS1bzj8fpOiiPsd4/9Y5nKrBQGj/cvQ5PvxSK1yR25ckY6aHOcrIkMeuZNwcN3mENXZsxOkz1si29xIvESFWQ13+Txy8AAeLnxXnJCOfvr+R1Z58AW0gGx+5hXCqsDVylY1aUMeUNu2CIMAIYHsch5f/iNbsYo/UJYA/8PeruDo0GUJdguOjHoDdMmx7yuA9xEN948KkqJJAgo8dbDeQ4vmPmyH8WxK7nlV3sm6Qk08ef9mmRe5AjjPjWzDyw5JpA7VAi7eK1JYMERNSNlAXBmiccuwUZsFFK2QwpokRdcDjLYPZGFI6dJjFmSIbJLNIQ==</SignatureValue><KeyInfo><X509Data><X509SubjectName>E=marco.bruggmann@bitperfect.pe, CN=MONTOYA RAMOS LILIAN MILAGROS, OU=DNI 18138986 RUC 20501913970, OU=DNI 18138986 RUC 20501913970, O=TELEFONICA CENTROS DE COBRO SAC, L=LIMA, S=LIMA, C=PE</X509SubjectName><X509Certificate>MIIFqzCCBJOgAwIBAgIMPjaxZxFGtk9iqWChMA0GCSqGSIb3DQEBBQUAMFQxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSowKAYDVQQDEyFHbG9iYWxTaWduIFBlcnNvbmFsU2lnbiAyIENBIC0gRzIwHhcNMTcwNzI3MDE0ODE4WhcNMTgwNzI4MDE0ODE4WjCB+TELMAkGA1UEBhMCUEUxDTALBgNVBAgTBExJTUExDTALBgNVBAcTBExJTUExKDAmBgNVBAoTH1RFTEVGT05JQ0EgQ0VOVFJPUyBERSBDT0JSTyBTQUMxJTAjBgNVBAsTHEROSSAxODEzODk4NiBSVUMgMjA1MDE5MTM5NzAxJTAjBgNVBAsTHEROSSAxODEzODk4NiBSVUMgMjA1MDE5MTM5NzAxJjAkBgNVBAMTHU1PTlRPWUEgUkFNT1MgTElMSUFOIE1JTEFHUk9TMSwwKgYJKoZIhvcNAQkBFh1tYXJjby5icnVnZ21hbm5AYml0cGVyZmVjdC5wZTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALO2Clhhq5sg6K5irj3RennKuW/GlW5gXiWAd12c5DfyMxGFo4ILe61jSuzXA4LYdcLJypS3ma+RJfaeoWylzyuvqxN3LInLefENzZuhE9FlXdrrOKoVTDcgpCn3M+W/2t0cTxAeEeTw43aYFbByDeydTlP7xONGPW5rfUysVTykHsk57TKQ7Qa5OaEPK+UjAyJMz4kyHaSZmTaq2EyL47GVb3qgx/XQAPhNsRk5IX8WU1rvI3fXYA+IwAoLtaD/R97JceE2fMPj1o6wMoFiLbr+otBv+eLgW9pbMDsS4zBH9JQpOdeyqr5U8VI3oy7eWB3fEC/i2xi5Wp89LLWa+KMCAwEAAaOCAdUwggHRMA4GA1UdDwEB/wQEAwIF4DCBlgYIKwYBBQUHAQEEgYkwgYYwSQYIKwYBBQUHMAKGPWh0dHA6Ly9zZWN1cmUuZ2xvYmFsc2lnbi5jb20vY2FjZXJ0L2dzcGVyc29uYWxzaWduMmcyb2NzcC5jcnQwOQYIKwYBBQUHMAGGLWh0dHA6Ly9vY3NwMi5nbG9iYWxzaWduLmNvbS9nc3BlcnNvbmFsc2lnbjJnMjBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBDBgNVHR8EPDA6MDigNqA0hjJodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzL2dzcGVyc29uYWxzaWduMmcyLmNybDAoBgNVHREEITAfgR1tYXJjby5icnVnZ21hbm5AYml0cGVyZmVjdC5wZTAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwHQYDVR0OBBYEFHddnKW6ZhTCbbGgfh1i0CeiW8czMB8GA1UdIwQYMBaAFD8V0m18L+cxnkMKBqiUbCw7xe5lMA0GCSqGSIb3DQEBBQUAA4IBAQALOj1gTygv6MLoL/S2waodzhEO57J2NpsZqgQ8g503QkI1/0yoCUcqho7iVcpEM4l+g4sD6QL+mfw0oEMXlfEiojtXALGb6dE3ueWRtU4nL2kWYHN0wwFLWgeStKwVRA/m4YEwYfaIPlgeiElU0hB9nSRIiBTgfocKHKhGPXNppy39O1PXGCuKmcxcrFB1z3ztkQoMYlOoOK8Fnb8HIuq6Md7L1MpN5Yd3/4YHn/jiSDpuk5jfqNgJ+Y6iraAKCobYmFJ5AEptKWHhSIdTkqnSlTFh7oCcEFQNzLXY5ch+m5cuaJUc8XAFod6tZkRT2fCp3ZkNQdIuklUryjKje3SA</X509Certificate></X509Data></KeyInfo></Signature></ext:ExtensionContent>
+    </ext:UBLExtension>
+  </ext:UBLExtensions>
+  <cbc:UBLVersionID>2.0</cbc:UBLVersionID>
+  <cbc:CustomizationID>1.0</cbc:CustomizationID>
+  <cbc:ID>FT01-00000987</cbc:ID>
+  <cbc:IssueDate>2018-05-15</cbc:IssueDate>
+  <cbc:InvoiceTypeCode>01</cbc:InvoiceTypeCode>
+  <cbc:DocumentCurrencyCode>PEN</cbc:DocumentCurrencyCode>
+  <cac:Signature>
+    <cbc:ID>SignatureEHUB</cbc:ID>
+    <cac:SignatoryParty>
+      <cac:PartyIdentification>
+        <cbc:ID>20501913970</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PartyName>
+        <cbc:Name>AGENCIA DE COBROS KASNET S.A.C.</cbc:Name>
+      </cac:PartyName>
+    </cac:SignatoryParty>
+    <cac:DigitalSignatureAttachment>
+      <cac:ExternalReference>
+        <cbc:URI>#SignatureEHUB</cbc:URI>
+      </cac:ExternalReference>
+    </cac:DigitalSignatureAttachment>
+  </cac:Signature>
+  <cac:AccountingSupplierParty>
+    <cbc:CustomerAssignedAccountID>20501913970</cbc:CustomerAssignedAccountID>
+    <cbc:AdditionalAccountID>6</cbc:AdditionalAccountID>
+    <cac:Party>
+      <cac:PostalAddress>
+        <cbc:ID>150140</cbc:ID>
+        <cbc:StreetName>AV. CAMINOS DEL INCA NRO. 670 INT. 302</cbc:StreetName>
+        <cbc:CitySubdivisionName>URB. TAMBO DE MONTERRICO</cbc:CitySubdivisionName>
+        <cbc:CityName>LIMA</cbc:CityName>
+        <cbc:CountrySubentity>LIMA</cbc:CountrySubentity>
+        <cbc:District>SANTIAGO DE SURCO</cbc:District>
+        <cac:Country>
+          <cbc:IdentificationCode>PE</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:PostalAddress>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>AGENCIA DE COBROS KASNET S.A.C.</cbc:RegistrationName>
+      </cac:PartyLegalEntity>
+    </cac:Party>
+  </cac:AccountingSupplierParty>
+  <cac:AccountingCustomerParty>
+    <cbc:CustomerAssignedAccountID>20100130204</cbc:CustomerAssignedAccountID>
+    <cbc:AdditionalAccountID>6</cbc:AdditionalAccountID>
+    <cac:Party>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>BBVA BANCO CONTINENTAL</cbc:RegistrationName>
+      </cac:PartyLegalEntity>
+    </cac:Party>
+  </cac:AccountingCustomerParty>
+  <cac:TaxTotal>
+    <cbc:TaxAmount currencyID="PEN">122.03</cbc:TaxAmount>
+    <cac:TaxSubtotal>
+      <cbc:TaxAmount currencyID="PEN">122.03</cbc:TaxAmount>
+      <cac:TaxCategory>
+        <cac:TaxScheme>
+          <cbc:ID>1000</cbc:ID>
+          <cbc:Name>IGV</cbc:Name>
+          <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+        </cac:TaxScheme>
+      </cac:TaxCategory>
+    </cac:TaxSubtotal>
+  </cac:TaxTotal>
+  <cac:LegalMonetaryTotal>
+    <cbc:PayableAmount currencyID="PEN">800.00</cbc:PayableAmount>
+  </cac:LegalMonetaryTotal>
+  <cac:InvoiceLine>
+    <cbc:ID>1</cbc:ID>
+    <cbc:InvoicedQuantity unitCode="NIU">1.00</cbc:InvoicedQuantity>
+    <cbc:LineExtensionAmount currencyID="PEN">677.97</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyID="PEN">800.00</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyID="PEN">122.03</cbc:TaxAmount>
+      <cac:TaxSubtotal>
+        <cbc:TaxAmount currencyID="PEN">122.03</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubtotal>
+    </cac:TaxTotal>
+    <cac:Item>
+      <cbc:Description>SERVICIO DE RECAUDACION EN AGENTES ABRIL 2018 - LIMA -ATE  </cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>BBVA_02</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:Price>
+      <cbc:PriceAmount currencyID="PEN">677.97</cbc:PriceAmount>
+    </cac:Price>
+  </cac:InvoiceLine>
+</Invoice>

@@ -1,0 +1,115 @@
+@model IEnumerable<DatosXML.Models.Entities.TB_HISTORIAL_CARGAS>
+
+@{
+    ViewData["Title"] = "HistorialCargas";
+}
+
+<style>
+
+    table tbody tr td {
+        font-size: 14px;
+    }
+
+    table thead tr th {
+        font-size: 14px;
+    }
+
+
+</style>
+
+<form asp-action="HistorialCargas" method="post">
+
+
+    <div class="card">
+        <div class="header">
+            <h2>Busqueda <small>Encontrar archivos desde:</small></h2>
+        </div>
+        <div class="body">
+
+            <div class="row clearfix">
+                @{
+
+                    string fecha_ingreso = ViewBag.fecha_hoy;
+
+                    if (fecha_ingreso.Equals("0001-01-01"))
+                    {
+                        fecha_ingreso = DateTime.Today.ToString("yyyy-MM-dd");
+                    }
+                }
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <input type="text" name="fecha_ingreso" value="@fecha_ingreso"
+                               data-provide="datepicker"
+                               data-date-format="yyyy-mm-dd"
+                               data-date-autoclose="true" class="form-control" placeholder="Seleccione">
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+
+                        <button type="submit" name="accion" class="btn btn-primary"><i class="fa fa-search"></i> <span>Buscar</span></button>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="card">
+        <div class="body">
+            <div class="table-responsive">
+                <table id="table_id" class="table table-bordered table-striped table-hover dataTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.archivo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.estado)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.fecha)
+                            </th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.archivo)
+                                </td>
+
+                                @if (item.estado == "CARGADO CON EXITO")
+                                {
+                                    <td>
+                                        <span class="badge badge-success"><strong>@Html.DisplayFor(modelItem => item.estado)</strong></span>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <span class="badge badge-danger">@Html.DisplayFor(modelItem => item.estado)</span>
+                                    </td>
+                                }
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.fecha)
+                                </td>                               
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</form>

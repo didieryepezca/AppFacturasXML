@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<Invoice xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts="urn:un:unece:uncefact:documentation:2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2" xmlns:sac="urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1" xmlns:udt="urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2">
+  <ext:UBLExtensions>
+    <ext:UBLExtension>
+      <ext:ExtensionContent>
+        <sac:AdditionalInformation>
+          <sac:AdditionalMonetaryTotal>
+            <cbc:ID>1001</cbc:ID>
+            <cbc:PayableAmount currencyID="PEN">847.46</cbc:PayableAmount>
+          </sac:AdditionalMonetaryTotal>
+          <sac:AdditionalMonetaryTotal>
+            <cbc:ID>1002</cbc:ID>
+            <cbc:PayableAmount currencyID="PEN">0.00</cbc:PayableAmount>
+          </sac:AdditionalMonetaryTotal>
+          <sac:AdditionalMonetaryTotal>
+            <cbc:ID>1003</cbc:ID>
+            <cbc:PayableAmount currencyID="PEN">0.00</cbc:PayableAmount>
+          </sac:AdditionalMonetaryTotal>
+          <sac:AdditionalProperty>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Value>UN MIL . Y 00/100 SOLES</cbc:Value>
+          </sac:AdditionalProperty>
+        </sac:AdditionalInformation>
+      </ext:ExtensionContent>
+    </ext:UBLExtension>
+    <ext:UBLExtension>
+      <ext:ExtensionContent><ds:Signature Id="SignatureSP"><SignedInfo xmlns="http://www.w3.org/2000/09/xmldsig#"><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>vIys5Ajt4FaxjYGDCaKOMrIfE9Q=</DigestValue></Reference></SignedInfo><SignatureValue xmlns="http://www.w3.org/2000/09/xmldsig#">REfu7OEQPTXPoFQp6hQP2vOUdssdAks70TzcMbcuaVP4zcvsskr/vtB0Gvqsb7uNN+QvSmR4clYWsECCP4UayjuTVHvtNJ5FFwAJR21BR/k1a8kZTDwTZN4P1vmWgEKzfey3wGiLkISXvEPxP1YBf7vmLaMNVl9RyyDWZ0Xu3uz/99pi8LKVllRxXenS/Trm3LIw3nsL4F/swKTL7c/QRgSUIPE71jPI7VrGvHX9asoh+q3HPfz0Taas15uhZJzXBsMba7JSiJNuWG53njG7KCeN+PcecROroi17XvsDeziO0vnLVKCUDZkgaK1M+N+6rEyEEFCt4BkiUlc2TuFIMA==</SignatureValue><KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#"><X509Data><X509SubjectName>C=PE, CN=ELIZABETH KARINA DAVILA VELAZCO, G=ELIZABETH KARINA, SN=DAVILA VELAZCO, T=ADMINISTRACION, OU=20122745059, OU=ADMINISTRACION, O=LOLIMSA CONSULTORIA DE SISTEMAS SAC, OID.1.3.6.1.4.1.17326.30.4=DNI, OID.1.3.6.1.4.1.17326.30.3=20122745059, OID.1.3.6.1.4.1.17326.30.2=RUC, SERIALNUMBER=42951651, S=LIMA-LIMA, L=SAN BORJA, Description=Qualified Certificate: RACER-PFVP-SW-KPSC, E=kdavila@lolimsa.com.pe</X509SubjectName><X509Certificate>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</X509Certificate></X509Data></KeyInfo></ds:Signature></ext:ExtensionContent>
+    </ext:UBLExtension>
+  </ext:UBLExtensions>
+  <cbc:UBLVersionID>2.0</cbc:UBLVersionID>
+  <cbc:CustomizationID>1.0</cbc:CustomizationID>
+  <cbc:ID>F003-514</cbc:ID>
+  <cbc:IssueDate>2018-04-19</cbc:IssueDate>
+  <cbc:InvoiceTypeCode>01</cbc:InvoiceTypeCode>
+  <cbc:DocumentCurrencyCode>PEN</cbc:DocumentCurrencyCode>
+  <cac:Signature>
+    <cbc:ID>IDSignSP</cbc:ID>
+    <cac:SignatoryParty>
+      <cac:PartyIdentification>
+        <cbc:ID>20515346113</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PartyName>
+        <cbc:Name>CORPORACION BOTICAS PERU S.A.C.</cbc:Name>
+      </cac:PartyName>
+    </cac:SignatoryParty>
+    <cac:DigitalSignatureAttachment>
+      <cac:ExternalReference>
+        <cbc:URI>#SignatureSP</cbc:URI>
+      </cac:ExternalReference>
+    </cac:DigitalSignatureAttachment>
+  </cac:Signature>
+  <cac:AccountingSupplierParty>
+    <cbc:CustomerAssignedAccountID>20515346113</cbc:CustomerAssignedAccountID>
+    <cbc:AdditionalAccountID>6</cbc:AdditionalAccountID>
+    <cac:Party>
+      <cac:PartyName>
+        <cbc:Name>CORPORACION BOTICAS PERU S.A.C.</cbc:Name>
+      </cac:PartyName>
+      <cac:PostalAddress>
+        <cbc:ID>150133</cbc:ID>
+        <cbc:StreetName>Jr. Baltazar Grados Nº 810</cbc:StreetName>
+        <cbc:CitySubdivisionName>LIMA</cbc:CitySubdivisionName>
+        <cbc:CityName>LIMA</cbc:CityName>
+        <cbc:CountrySubentity>LIMA</cbc:CountrySubentity>
+        <cbc:District>SAN JUAN DE MIRAFLORES</cbc:District>
+        <cac:Country>
+          <cbc:IdentificationCode>PE</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:PostalAddress>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>CORPORACION BOTICAS PERU S.A.C.</cbc:RegistrationName>
+      </cac:PartyLegalEntity>
+    </cac:Party>
+  </cac:AccountingSupplierParty>
+  <cac:AccountingCustomerParty>
+    <cbc:CustomerAssignedAccountID>20100130204</cbc:CustomerAssignedAccountID>
+    <cbc:AdditionalAccountID>6</cbc:AdditionalAccountID>
+    <cac:Party>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>BBVA BANCO CONTINENTAL</cbc:RegistrationName>
+      </cac:PartyLegalEntity>
+    </cac:Party>
+  </cac:AccountingCustomerParty>
+  <cac:TaxTotal>
+    <cbc:TaxAmount currencyID="PEN">152.54</cbc:TaxAmount>
+    <cac:TaxSubtotal>
+      <cbc:TaxAmount currencyID="PEN">152.54</cbc:TaxAmount>
+      <cac:TaxCategory>
+        <cac:TaxScheme>
+          <cbc:ID>1000</cbc:ID>
+          <cbc:Name>IGV</cbc:Name>
+          <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+        </cac:TaxScheme>
+      </cac:TaxCategory>
+    </cac:TaxSubtotal>
+  </cac:TaxTotal>
+  <cac:LegalMonetaryTotal>
+    <cbc:PayableAmount currencyID="PEN">1000.00</cbc:PayableAmount>
+  </cac:LegalMonetaryTotal>
+  <cac:InvoiceLine>
+    <cbc:ID>1</cbc:ID>
+    <cbc:InvoicedQuantity unitCode="NIU">1.00</cbc:InvoicedQuantity>
+    <cbc:LineExtensionAmount currencyID="PEN">847.46</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyID="PEN">1000.00</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyID="PEN">152.54</cbc:TaxAmount>
+      <cac:TaxSubtotal>
+        <cbc:TaxAmount currencyID="PEN">152.54</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubtotal>
+    </cac:TaxTotal>
+    <cac:Item>
+      <cbc:Description>PRESTACION DE SERVICIOS AGENTE BBVA LOCAL DE MIRAFLORES  
+MES DE MARZO 2018.</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>FA.00.00</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:Price>
+      <cbc:PriceAmount currencyID="PEN">847.46</cbc:PriceAmount>
+    </cac:Price>
+  </cac:InvoiceLine>
+</Invoice>

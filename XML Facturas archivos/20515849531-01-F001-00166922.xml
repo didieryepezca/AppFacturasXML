@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts="urn:un:unece:uncefact:documentation:2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2" xmlns:sac="urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1" xmlns:udt="urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ext:UBLExtensions>
+    <ext:UBLExtension>
+      <ext:ExtensionContent>
+        <sac:AdditionalInformation>
+          <sac:AdditionalMonetaryTotal>
+            <cbc:ID>1001</cbc:ID>	
+            <cbc:PayableAmount currencyID="PEN">265742.16</cbc:PayableAmount>
+          </sac:AdditionalMonetaryTotal>
+          <sac:AdditionalProperty>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Value>TRESCIENTOS TRECE MIL QUINIENTOS SETENTA Y CINCO CON 75/100 SOLES</cbc:Value>
+          </sac:AdditionalProperty>
+        </sac:AdditionalInformation>
+      </ext:ExtensionContent>
+    </ext:UBLExtension>
+    <ext:UBLExtension>
+      <ext:ExtensionContent><Signature Id="SignatureEHUB" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>ojb+bwHIgxRgbqv61Raio6k1r5U=</DigestValue></Reference></SignedInfo><SignatureValue>egprE6kxEUzHQ6AY+6ApOuXCbiFJ9C6tHWyMDec2Hci2uNtg2yo0rrjb1lqLf6L54LPPIiaofsbCoJsbmMpfrH8R8z8KioxjJCCTuSN5420Z6MyqFVJNbaWQHlnED4UjfcWsFshErO/rCc7lsIIu3BPHb0IqnYx6mPQKYk/n4HpMrsEjaxQWVZpUoE8eYh8nRdTsgUF6zvk1heXr7LTL0rwJf1kmxROwNfxnGYtrROi7qrNcOMtspi+R25lO7gRO178ow1q9qGSCiclvI+4AjEjESrgQy+O+Mzp4QAbw40ihHFcOVJYr3xl5dmRUEK1olYMQTlNFOalXB9RZFyeQxg==</SignatureValue><KeyInfo><X509Data><X509SubjectName>E=SRAMOS@GLOBOKAS.COM, CN=GLOBOKAS PERU S.A., OU=40931646, OU=20515849531, OU=SANDRA MONICA RAMOS GUILLEN, O=Certisign Certificadora Digital S.A., L=Lima, C=PE</X509SubjectName><X509Certificate>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</X509Certificate></X509Data></KeyInfo></Signature></ext:ExtensionContent>
+    </ext:UBLExtension>
+  </ext:UBLExtensions>
+  <cbc:UBLVersionID>2.0</cbc:UBLVersionID>
+  <cbc:CustomizationID>1.0</cbc:CustomizationID>
+  
+  
+  <cbc:ID>F001-00166922</cbc:ID>  
+  <cbc:IssueDate>2019-05-21</cbc:IssueDate>
+  <cbc:InvoiceTypeCode>01</cbc:InvoiceTypeCode>  
+  <cbc:DocumentCurrencyCode>PEN</cbc:DocumentCurrencyCode>
+  
+  
+  <cac:Signature>
+    <cbc:ID>SignatureEHUB</cbc:ID>
+    <cac:SignatoryParty>	
+      <cac:PartyIdentification>
+        <cbc:ID>20515849531</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PartyName>
+        <cbc:Name>GLOBOKAS PERU S.A.</cbc:Name>
+      </cac:PartyName>
+    </cac:SignatoryParty>
+    <cac:DigitalSignatureAttachment>
+      <cac:ExternalReference>
+        <cbc:URI>#SignatureEHUB</cbc:URI>
+      </cac:ExternalReference>
+    </cac:DigitalSignatureAttachment>
+  </cac:Signature>
+  
+  
+ 
+  <cac:AccountingSupplierParty>
+    <cbc:CustomerAssignedAccountID>20515849531</cbc:CustomerAssignedAccountID>
+    <cbc:AdditionalAccountID>6</cbc:AdditionalAccountID>
+    <cac:Party>
+      <cac:PostalAddress>
+        <cbc:ID>150140</cbc:ID>
+        <cbc:StreetName>AV. CAMINOS DEL INCA NRO. 777</cbc:StreetName>
+        <cbc:CitySubdivisionName>URB. LAS GARDENIAS</cbc:CitySubdivisionName>
+        <cbc:CityName>LIMA</cbc:CityName>
+        <cbc:CountrySubentity>LIMA</cbc:CountrySubentity>
+        <cbc:District>SANTIAGO DE SURCO</cbc:District>
+        <cac:Country>
+          <cbc:IdentificationCode>PE</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:PostalAddress>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>GLOBOKAS PERU S.A.</cbc:RegistrationName>
+      </cac:PartyLegalEntity>
+    </cac:Party>
+  </cac:AccountingSupplierParty>
+  
+ 
+  <cac:AccountingCustomerParty>
+    <cbc:CustomerAssignedAccountID>20100130204</cbc:CustomerAssignedAccountID>
+    <cbc:AdditionalAccountID>6</cbc:AdditionalAccountID>
+    <cac:Party>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>BBVA BANCO CONTINENTAL</cbc:RegistrationName>
+      </cac:PartyLegalEntity>
+    </cac:Party>
+  </cac:AccountingCustomerParty>
+  
+  
+  <cac:TaxTotal>
+    <cbc:TaxAmount currencyID="PEN">47833.59</cbc:TaxAmount>
+    <cac:TaxSubtotal>
+      <cbc:TaxAmount currencyID="PEN">47833.59</cbc:TaxAmount>
+      <cac:TaxCategory>
+        <cac:TaxScheme>
+          <cbc:ID>1000</cbc:ID>
+          <cbc:Name>IGV</cbc:Name>
+          <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+        </cac:TaxScheme>
+      </cac:TaxCategory>
+    </cac:TaxSubtotal>
+  </cac:TaxTotal>
+  
+ 
+  <cac:LegalMonetaryTotal>
+    <cbc:PayableAmount currencyID="PEN">313575.75</cbc:PayableAmount>
+  </cac:LegalMonetaryTotal>
+  <cac:InvoiceLine>
+    <cbc:ID>1</cbc:ID>	
+    <cbc:InvoicedQuantity unitCode="NIU">1.00</cbc:InvoicedQuantity>
+    <cbc:LineExtensionAmount currencyID="PEN">265742.16</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyID="PEN">313575.75</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyID="PEN">47833.59</cbc:TaxAmount>
+      <cac:TaxSubtotal>
+        <cbc:TaxAmount currencyID="PEN">47833.59</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubtotal>
+    </cac:TaxTotal>
+    <cac:Item>	
+      <cbc:Description>POR SERVICIOS DE TRANSMISION Y TRANSACCIONES FINANCIERAS Y SERVICIO DE TRANSMISION DE DATOS POR SALDOS Y MOVIMIENTOS DE AGENTES KASNET SEGUN DETALLE ADJUNTO DEL MES DE ABRIL 2019</cbc:Description>     
+	  <cac:SellersItemIdentification>
+        <cbc:ID>COM_TX</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>	
+    <cac:Price>
+      <cbc:PriceAmount currencyID="PEN">265742.16</cbc:PriceAmount>
+    </cac:Price>
+  </cac:InvoiceLine>
+</Invoice>

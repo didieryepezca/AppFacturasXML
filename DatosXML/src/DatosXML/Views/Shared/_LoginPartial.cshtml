@@ -1,0 +1,42 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using DatosXML.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
+        <div class="user-account">
+
+            <img src="~/assets/images/opplus.png" class="rounded-circle user-photo" alt="User Profile Picture"
+                 onerror="this.onerror = null; this.src = '../assets/images/opplus.png'">
+
+            <div class="dropdown">
+                <span>Bienvenido,</span>
+                <a href="javascript:void(0);" class="dropdown-toggle user-name" data-toggle="dropdown"><strong> @UserManager.GetUserName(User)</strong></a>
+                <ul class="dropdown-menu dropdown-menu-right account">                   
+                    <li>
+                        <button type="submit" class="btn btn-xs btn-link navbar-btn navbar-link">Salir</button>
+                    </li>
+                </ul>
+            </div>
+            <hr>
+        </div>
+    </form>
+}
+else
+{
+    <div class="account">
+        <ul class="list-inline">
+            <li class="nav-item">
+                <a class="btn btn-outline-secondary" asp-area="" asp-controller="Account" asp-action="Register"><i class="icon-pencil"></i>Registrar</a>
+                <a class="btn btn-outline-primary" asp-area="" asp-controller="Account" asp-action="Login"><i class="icon-arrow-right"></i>Login</a>
+                
+            </li>
+           
+
+        </ul>
+
+    </div>
+}

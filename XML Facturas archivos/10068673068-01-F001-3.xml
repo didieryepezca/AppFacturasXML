@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts="urn:un:unece:uncefact:documentation:2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2" xmlns:sac="urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1" xmlns:udt="urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ext:UBLExtensions>
+    <ext:UBLExtension>
+      <ext:ExtensionContent><ds:Signature Id="SignatureSP"><SignedInfo xmlns="http://www.w3.org/2000/09/xmldsig#"><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>Be88nIAm+2a07rQUfiWyXTxXsL0=</DigestValue></Reference></SignedInfo><SignatureValue xmlns="http://www.w3.org/2000/09/xmldsig#">LO64i/oOPs9KFioyiOe3HUoOS46GGaS8O1ALT3rxEENBXc0KGmH3In4ukfi9v2DgSEB1khPxQBYlq1pLAkw4x6yaEa7akam6LoZHGJd+1RwrbXy0uiiuMheI57UEM4sa0tvKMfxdoUuSgeEpNY78aGmSHy3gJkAf8Zj0C05DguXB1R7jqH88YvH1/r8mDEZHJMsGLM4lUmLRXwQ3t6Hs8V0LyZMdmENF4kFaNRgah2NTUNS3nlFBGCe7rgn/B0fncJAuqlpJcHe+CmB8BC7cVFR1Q0uRzq4hseYic/Q/vTQJn2n/kkyP67ScBYKEGo9KrafNslxR6n2EAMxrI1ZYPg==</SignatureValue><KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#"><X509Data><X509SubjectName>C=PE, O=CACERES GAMARRA ELMA ROSARELA, OID.2.5.4.97=10068673068, OU=Issued by LLAMA.PE SA [PE1], OU=GERENCIA, T=REPRESENTANTE LEGAL, S=- LIMA, L=COMAS, SERIALNUMBER=NIF:06867306, SN=CACERES GAMARRA, G=ELMA ROSARELA, CN=ELMA ROSARELA CACERES GAMARRA, E=cibercont.sa@gmail.com</X509SubjectName><X509Certificate>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</X509Certificate></X509Data></KeyInfo></ds:Signature></ext:ExtensionContent>
+    </ext:UBLExtension>
+  </ext:UBLExtensions>
+  <cbc:UBLVersionID>2.1</cbc:UBLVersionID>
+  <cbc:CustomizationID>2.0</cbc:CustomizationID>
+  <cbc:ProfileID schemeName="Tipo de Operacion" schemeAgencyName="PE:SUNAT" schemeURI="urn:pe:gob:sunat:cpe:see:gem:catalogos:catalogo51">0101</cbc:ProfileID>
+  <cbc:ID>F001-3</cbc:ID>
+  <cbc:IssueDate>2019-05-24</cbc:IssueDate>
+  <cbc:IssueTime>19:23:39</cbc:IssueTime>
+  <cbc:DueDate>2019-05-24</cbc:DueDate>
+  <cbc:InvoiceTypeCode listID="0101" name="Tipo de Operacion" listSchemeURI="urn:pe:gob:sunat:cpe:see:gem:catalogos:catalogo51" listAgencyName="PE:SUNAT" listName="Tipo de Documento" listURI="urn:pe:gob:sunat:cpe:see:gem:catalogos:catalogo01">01</cbc:InvoiceTypeCode>
+  <cbc:Note languageLocaleID="1000">MIL DIECISEIS CON 80/100 SOLES</cbc:Note>
+  <cbc:DocumentCurrencyCode listID="ISO 4217 Alpha" listName="Currency" listAgencyName="United Nations Economic Commission for Europe">PEN</cbc:DocumentCurrencyCode>
+  <cbc:LineCountNumeric>1</cbc:LineCountNumeric>
+  <cac:Signature>
+    <cbc:ID>IDSignSP</cbc:ID>
+    <cac:SignatoryParty>
+      <cac:PartyIdentification>
+        <cbc:ID>10068673068</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PartyName>
+        <cbc:Name><![CDATA[CACERES GAMARRA ELMA ROSARELA]]></cbc:Name>
+      </cac:PartyName>
+    </cac:SignatoryParty>
+    <cac:DigitalSignatureAttachment>
+      <cac:ExternalReference>
+        <cbc:URI>#SignatureSP</cbc:URI>
+      </cac:ExternalReference>
+    </cac:DigitalSignatureAttachment>
+  </cac:Signature>
+  <cac:AccountingSupplierParty>
+    <cac:Party>
+      <cac:PartyIdentification>
+        <cbc:ID schemeID="6" schemeName="Documento de Identidad" schemeAgencyName="PE:SUNAT" schemeURI="urn:pe:gob:sunat:cpe:see:gem:catalogos:catalogo06">10068673068</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PartyName>
+        <cbc:Name><![CDATA[CACERES GAMARRA ELMA ROSARELA]]></cbc:Name>
+      </cac:PartyName>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName><![CDATA[CACERES GAMARRA ELMA ROSARELA]]></cbc:RegistrationName>
+        <cac:RegistrationAddress>
+          <cbc:AddressTypeCode>0000</cbc:AddressTypeCode>
+        </cac:RegistrationAddress>
+      </cac:PartyLegalEntity>
+    </cac:Party>
+  </cac:AccountingSupplierParty>
+  <cac:AccountingCustomerParty>
+    <cac:Party>
+      <cac:PartyIdentification>
+        <cbc:ID schemeID="6" schemeName="Documento de Identidad" schemeAgencyName="PE:SUNAT" schemeURI="urn:pe:gob:sunat:cpe:see:gem:catalogos:catalogo06">20100130204</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName><![CDATA[BBVA BANCO CONTINENTAL]]></cbc:RegistrationName>
+      </cac:PartyLegalEntity>
+    </cac:Party>
+  </cac:AccountingCustomerParty>
+  <cac:TaxTotal>
+    <cbc:TaxAmount currencyID="PEN">155.11</cbc:TaxAmount>
+    <cac:TaxSubtotal>
+      <cbc:TaxableAmount currencyID="PEN">861.69</cbc:TaxableAmount>
+      <cbc:TaxAmount currencyID="PEN">155.11</cbc:TaxAmount>
+      <cac:TaxCategory>
+        <cbc:ID schemeID="UN/ECE 5305" schemeName="Tax Category Identifier" schemeAgencyName="United Nations Economic Commission for Europe">S</cbc:ID>
+        <cac:TaxScheme>
+          <cbc:ID schemeID="UN/ECE 5153" schemeAgencyID="6">1000</cbc:ID>
+          <cbc:Name>IGV</cbc:Name>
+          <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+        </cac:TaxScheme>
+      </cac:TaxCategory>
+    </cac:TaxSubtotal>
+  </cac:TaxTotal>
+  <cac:LegalMonetaryTotal>
+    <cbc:LineExtensionAmount currencyID="PEN">861.69</cbc:LineExtensionAmount>
+    <cbc:TaxInclusiveAmount currencyID="PEN">1016.80</cbc:TaxInclusiveAmount>
+    <cbc:PayableAmount currencyID="PEN">1016.80</cbc:PayableAmount>
+  </cac:LegalMonetaryTotal>
+  <cac:InvoiceLine>
+    <cbc:ID>1</cbc:ID>
+    <cbc:InvoicedQuantity unitCode="ZZ" unitCodeListID="UN/ECE rec 20" unitCodeListAgencyName="United Nations Economic Commission for Europe">1.000</cbc:InvoicedQuantity>
+    <cbc:LineExtensionAmount currencyID="PEN">861.69</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyID="PEN">1016.80</cbc:PriceAmount>
+        <cbc:PriceTypeCode listName="Tipo de Precio" listAgencyName="PE:SUNAT" listURI="urn:pe:gob:sunat:cpe:see:gem:catalogos:catalogo16">01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyID="PEN">155.11</cbc:TaxAmount>
+      <cac:TaxSubtotal>
+        <cbc:TaxableAmount currencyID="PEN">861.69</cbc:TaxableAmount>
+        <cbc:TaxAmount currencyID="PEN">155.11</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:ID schemeID="UN/ECE 5305" schemeName="Tax Category Identifier" schemeAgencyName="United Nations Economic Commission for Europe">S</cbc:ID>
+          <cbc:Percent>18.00</cbc:Percent>
+          <cbc:TaxExemptionReasonCode listAgencyName="PE:SUNAT" listName="Afectacion del IGV" listURI="urn:pe:gob:sunat:cpe:see:gem:catalogos:catalogo07">10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubtotal>
+    </cac:TaxTotal>
+    <cac:Item>
+      <cbc:Description>POR PRESTACION DE SERVICIOS BANCARIOS DEL AGENTE BBVA BANCO CONTINENTAL DEL MES DE  ENERO 2019, TERMINAL 00649</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>20190524183247</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:Price>
+      <cbc:PriceAmount currencyID="PEN">861.69</cbc:PriceAmount>
+    </cac:Price>
+  </cac:InvoiceLine>
+</Invoice>

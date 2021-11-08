@@ -1,0 +1,1223 @@
+﻿@model IEnumerable<DatosXML.Models.TB_FACTURA_XML>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<script type="text/javascript">
+
+    function cargarCSV() {
+        
+        var vNombArchivo = $('#txtCsvConsolidado').val();        
+
+        if (vNombArchivo == "" || vNombArchivo == null) {
+            
+            //swal({
+            //    title: "ERROR",
+            //    text: "Por favor escriba el Nombre del Archivo",
+            //    type: "warning"
+            //});
+
+            Swal.fire(
+                  'ERROR!',
+                  'Por favor escriba el Nombre del Archivo',
+                  'warning'
+                )
+
+        } else {
+
+            ////-----------------------------------------------------------------StartSwal TIMER
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                html: 'Se Cargara la Data de: <strong> ' + vNombArchivo + ' </strong> en <b></b> milisegundos.',
+                timer: 8800,
+                timerProgressBar: true,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+                    timerInterval = setInterval(() => {
+                        const content = Swal.getContent()
+                        if (content) {
+                            const b = content.querySelector('b')
+                            if (b) {
+                                b.textContent = Swal.getTimerLeft()
+                            }
+                        }
+                    }, 100)
+                },
+                onClose: () => {
+                    clearInterval(timerInterval);
+                    
+                }
+            }).then((result) => {
+
+                if (result.dismiss === Swal.DismissReason.timer) {
+
+                }
+            })
+            ////-----------------------------------------------------------------EndSwal TIMER
+
+            var url = "/Home/FunCargarCSV";
+            $.get(url, { NombreCSV: vNombArchivo }, function (data) {                
+
+                if (data >= 1) {
+                    
+                    console.log(data);
+                    $('#txtCsvConsolidado').val("");                    
+
+                    Swal.fire(
+                           'Cargado!',
+                           'La data del archivo se cargo correctamente',
+                           'success'
+                         )
+                }
+
+                else {
+                    Swal.fire(
+                          'ERROR!',
+                          'Hubo un Problema',
+                          'warning'
+                        )
+                }            
+
+            });
+
+        } // ELSE FIN
+
+    }// FUNCTION cargarCSV FIN
+
+
+    var arrayFechasFiltro = [];
+
+    function aplicarFiltrosCalcular() {
+
+        var fechaIni = $('#fechaInicio').val();
+        var fechaFin = $('#fechaFin').val();       
+
+        //console.log(fechaIni);
+        //console.log(fechaFin);
+
+        arrayFechasFiltro = [];
+
+        if (fechaIni != "" && fechaIni != null) {
+            arrayFechasFiltro.push(fechaIni);
+        }
+        if (fechaFin != "" && fechaFin != null) {
+            arrayFechasFiltro.push(fechaFin);
+        }        
+
+        var nroCamposLlenos = arrayFechasFiltro.length;
+
+        if (nroCamposLlenos == 2) {
+
+            //console.log("CALCULATE ! ")
+            var momfechaIni = moment(fechaIni).format('YYYY-MM-DD');
+            var momfechaFin = moment(fechaFin).format('YYYY-MM-DD');
+            
+            
+            if (momfechaIni >= momfechaFin) {
+
+                Swal.fire(
+                 'ADVERTENCIA !',
+                 'la fecha de fin debe ser mayor',
+                 'warning'
+               )
+
+            } else {
+
+                ////-----------------------------------------------------------------StartSwal TIMER
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    html: 'Preparando Indicadores desde: <strong> ' + momfechaIni + ' </strong> al<strong> ' + momfechaFin + ' </strong> en <b></b> milisegundos.',
+                    timer: 5000,
+                    timerProgressBar: true,
+                    onBeforeOpen: () => {
+                        Swal.showLoading()
+                        timerInterval = setInterval(() => {
+                            const content = Swal.getContent()
+                            if (content) {
+                                const b = content.querySelector('b')
+                                if (b) {
+                                    b.textContent = Swal.getTimerLeft()
+                                }
+                            }
+                        }, 100)
+                    },
+                    onClose: () => {
+                        clearInterval(timerInterval);
+                        //ActualizarIndicadores(momfechaIni, momfechaFin);
+                    }
+                }).then((result) => {
+
+                    if (result.dismiss === Swal.DismissReason.timer) {
+
+                    }
+                })
+
+                //console.log("LLEGO");
+                ////-----------------------------------------------------------------EndSwal TIMER
+                var url = "/Home/FunCalcularIndicadores";
+                $.get(url, { vFechaIni: momfechaIni, vFechaFin: momfechaFin }, function (data) {
+
+                    if (data >= 1) {
+
+                        ActualizarIndicadores(momfechaIni, momfechaFin);
+                    }
+
+                    else {
+                        Swal.fire(
+                              'ERROR!',
+                              'Hubo un Problema Calculando los Indicadores',
+                              'warning'
+                            )
+                    }
+
+                });
+
+
+            }
+            
+            
+
+        } else {
+
+            Swal.fire(
+                  'ERROR!',
+                  'Le falto elegir alguna(s) fecha(s)',
+                  'warning'
+                )
+
+        }
+    }
+
+    function ActualizarIndicadores(fechaIni, fechaFin) {
+
+        var url = "/Home/FunGetMainIndicadores";
+        $.get(url, { vFechaIni: fechaIni, vFechaFin: fechaFin }, function (data) {
+
+            $('#labelMontoAPagar').text(data[0].monto_pagar.toLocaleString('en'));
+            $('#labelTotalPagado').text(data[0].total_pagado.toLocaleString('en'));
+            $('#labelDocsEsperados').text(data[0].documentos_esperados.toLocaleString('en'));
+            $('#labelDocsAtendidos').text(data[0].documentos_atendidos.toLocaleString('en'));
+            $('#labelMediaMensual').text(data[0].media_mensual_docs_aten.toLocaleString('en'));
+
+
+        });
+        
+
+
+        //-------------- MONTOS PENDIENTES
+        function encuentrosMontosPendientes(label, y) {
+
+            this.label = label;
+            this.y = y;
+        };
+        var arrayMontosPendientes = [];
+
+        //-------------- MONTOS PAGADOS
+        function encuentrosMontosPagados(label, y) {
+
+            this.label = label;
+            this.y = y;
+        };
+        var arrayMontosPagados = [];
+
+
+        //-------------- % MONTO PENDIENTE
+        function encuentrosPorcPendiente(label, y) {
+
+            this.label = label;
+            this.y = y;
+        };
+        var arrayPorcPendiente = [];
+
+        //-------------- % MONTO PAGADO
+        function encuentrosPorcPagado(label, y) {
+
+            this.label = label;
+            this.y = y;
+        };
+        var arrayPorcPagado = [];
+
+
+        var url = "/Home/FunGetMontosAnio";
+        $.get(url, { vFechaIni: fechaIni, vFechaFin: fechaFin }, function (data) {
+
+            //console.log(data);
+
+            data.forEach(function (element) {
+                
+                arrayMontosPagados.push(new encuentrosMontosPagados(element.anio, element.monto_pagado))
+                arrayMontosPendientes.push(new encuentrosMontosPendientes(element.anio, element.monto_pendiente))
+
+                arrayPorcPagado.push(new encuentrosPorcPagado(element.anio, element.monto_porc_pagado))
+                arrayPorcPendiente.push(new encuentrosPorcPendiente(element.anio, element.monto_porc_pendiente))             
+
+            });
+
+        });
+        ///------------------------------------------------------------------------------- Graficos montos anio
+        CanvasJS.addColorSet("greenMoney",
+                [//colorSet Array
+                    "#f2b727",
+                    "#2DE589",
+                ]);
+
+        var chartMontos = new CanvasJS.Chart("chartMontos", {            
+            animationEnabled: true,
+            colorSet: "greenMoney",
+            
+            axisX: {
+                title: "Años"
+            },
+            axisY: {
+                title: "Montos",
+                titleFontColor: "#4F81BC",               
+                tickColor: "#4F81BC",
+                includeZero: true
+            },
+            
+            toolTip: {
+                shared: true
+            },
+            legend: {
+                cursor: "pointer",
+                
+            },
+            data: [{
+                type: "column",
+                name: "Monto Pendiente",
+                showInLegend: true,      
+                yValueFormatString: "#,##0.# Soles",
+                dataPoints: arrayMontosPendientes
+            },
+            {
+                type: "column",
+                name: "Monto Pagado",                
+                showInLegend: true,
+                yValueFormatString: "#,##0.# Soles",
+                dataPoints: arrayMontosPagados
+            }]
+        });
+        chartMontos.render();
+
+        ///------------------------------------------------------------------------------- Graficos porcentajes x anio
+        var chartPorcentaje = new CanvasJS.Chart("chartPorcentajes", {
+            animationEnabled: true,
+            colorSet: "greenMoney",
+
+            axisX: {
+                title: "Años"
+            },
+            axisY: {
+                title: "Porcentaje",
+                titleFontColor: "#4F81BC",
+                tickColor: "#4F81BC",
+                includeZero: true
+            },
+
+            toolTip: {
+                shared: true
+            },
+            legend: {
+                cursor: "pointer",
+
+            },
+            data: [{
+                type: "column",
+                name: "% Pendiente",
+                showInLegend: true,
+                yValueFormatString: "#,##0\"%\"",
+                dataPoints: arrayPorcPendiente
+            },
+            {
+                type: "column",
+                name: "% Pagado",
+                showInLegend: true,
+                yValueFormatString: "#,##0\"%\"",
+                dataPoints: arrayPorcPagado
+            }]
+        });
+        chartPorcentaje.render();
+
+
+
+        //------------------------------------------------------- CONTROL RECEPCION MENSUAL
+        //-------------- ACEPTADAS
+        function encuentrosAceptadas(label, y) {
+
+            this.label = label;
+            this.y = y;
+        };
+        var arrayAceptadas = [];
+
+        //-------------- RECHAZADAS
+        function encuentrosRechazadas(label, y) {
+
+            this.label = label;
+            this.y = y;
+        };
+        var arrayRechazadas = [];
+
+        //-------------- RECHAZADAS
+        function encuenRechPorcentaje(label, y) {
+
+            this.label = label;
+            this.y = y;
+        };
+        var arrayRechPorcentaje = [];
+
+
+        //-------------- RECHAZOS X MES COMISION
+        function encuentrosRechMesComision(y, label) {            
+            this.y = y;
+            this.label = label;
+        };
+        var arrayRechMesComision = [];
+
+
+
+        //--------------------------------------------
+        //-------------- ACEPTADAS DEL DIA
+        function encuentrosAceptadasDia(label, y) {
+
+            this.label = label;
+            this.y = y;
+        };
+        var arrayAceptadasDia = [];
+
+        //-------------- RECHAZADAS DEL DIA
+        function encuentrosRechazadasDia(label, y) {
+
+            this.label = label;
+            this.y = y;
+        };
+        var arrayRechazadasDia = [];
+
+        var url = "/Home/FunGetCtrolRecepcion";
+        $.get(url, { vFechaIni: fechaIni, vFechaFin: fechaFin }, function (data) {
+
+            //console.log(data);
+
+            data.forEach(function (element) {
+
+                if (element.estatus == "ACEPTADA") {
+
+                    arrayAceptadas.push(new encuentrosAceptadas(element.mes_anio, element.cantidad))
+
+                } if (element.estatus == "RECHAZADA") {
+
+                    arrayRechazadas.push(new encuentrosRechazadas(element.mes_anio, element.cantidad))
+                    arrayRechPorcentaje.push(new encuenRechPorcentaje(element.mes_anio, element.porcentaje_rechazados))
+
+                } if (element.estatus == "RECH-MES-COMI") {
+
+                    arrayRechMesComision.push(new encuentrosRechMesComision(element.cantidad, element.mes_anio))
+                }
+
+            });
+
+            //console.log(arrayAceptadas);
+            //console.log(arrayRechazadas);
+        });
+
+
+        var url = "/Home/FunGetCtrolRecepcionDia";
+        $.get(url, { vFechaIni: fechaIni, vFechaFin: fechaFin }, function (data) {
+
+            //console.log(data);
+
+            data.forEach(function (element) {
+
+                if (element.estatus == "ACEPTADA") {
+
+                    arrayAceptadasDia.push(new encuentrosAceptadasDia(moment(element.dia_fecha).format('YYYY-MM-DD'), element.cantidad))
+
+                } if (element.estatus == "RECHAZADA") {
+
+                    arrayRechazadasDia.push(new encuentrosRechazadasDia(moment(element.dia_fecha).format('YYYY-MM-DD'), element.cantidad))
+
+                }
+
+            });
+
+            //console.log(arrayAceptadasDia);
+            //console.log(arrayRechazadasDia);
+        });
+
+        //------------------------------------------------------------- PIES DE RECHAZOS
+
+        function EncuentrosRechazoCurso(y, label) {
+            this.y = y;
+            this.label = label;
+        };
+        var arrEncuentrosRechazoCurso = [];
+
+        function EncuentrosRechazo(y, label) {
+            this.y = y;
+            this.label = label;
+        };
+        var arrEncuentrosRechazo = [];
+
+        function EncuentrosRechazoMes1(y, label) {
+            this.y = y;
+            this.label = label;
+        };
+        var arrEncuentrosRechazoMes1 = [];
+
+
+        function EncuentrosRechazoMes2(y, label) {
+            this.y = y;
+            this.label = label;
+        };
+        var arrEncuentrosRechazoMes2 = [];
+
+        //var anioFechaFin = moment(fechaFin).format('YYYY');
+        //var mesFechaFin = moment(fechaFin).format('MM');       
+        
+
+        //------------------
+        var fechaActual = moment().format('YYYY-MM-DD');
+
+        var mesCurso = moment(fechaActual).format('MM');
+        var anioCurso = moment(fechaActual).format('YYYY');
+
+        //---------------- Fechas de Consulta ultimos 3 meses
+        var mesRpt = moment(fechaFin).format('MM');
+        var anioRpt = moment(fechaFin).format('YYYY');      
+
+        var mesBack1Date = moment(fechaFin).subtract(1, 'months').format('YYYY-MM-DD');
+        var mesBack1 = moment(mesBack1Date).format('MM');
+        var anio1 = moment(mesBack1Date).format('YYYY');       
+
+        var mesBack2Date = moment(fechaFin).subtract(2, 'months').format('YYYY-MM-DD');
+        var mesBack2 = moment(mesBack2Date).format('MM');
+        var anio2 = moment(mesBack2Date).format('YYYY');
+
+
+        $('#etiMesActual').remove();
+        $('#etiMes1').remove();
+        $('#etiMes2').remove();
+
+        var etiquetaMesActual = ' <h2 id="etiMesActual">Dist. de Motivos de Rechazo del <strong>' + mesRpt + ' de ' + anioRpt + '</strong></h2>';
+        var etiquetaMes1 = ' <h2 id="etiMes1">Dist. de Motivos de Rechazo del <strong>' + mesBack1 + ' de ' + anio1 + '</strong></h2>';
+        var etiquetaMes2 = ' <h2 id="etiMes2">Dist. de Motivos de Rechazo del <strong>' + mesBack2 + ' de ' + anio2 + '</strong></h2>';
+
+        var url = "/Home/FunGetDistRechazos";
+        $.get(url, { vFechaIni: fechaIni, vFechaFin: fechaFin }, function (data) {
+
+            //console.log(data);
+
+            data.forEach(function (element) {
+
+                if (element.mes == Number(mesCurso) && element.anio == Number(anioCurso)) {
+
+                    arrEncuentrosRechazoCurso.push(new EncuentrosRechazoCurso(element.porcentaje, element.motivo))
+                }
+
+                if (element.mes == Number(mesRpt) && element.anio == Number(anioRpt)) {
+
+                    arrEncuentrosRechazo.push(new EncuentrosRechazo(element.porcentaje, element.motivo))
+                }
+                if (element.mes == Number(mesBack1) && element.anio == Number(anio1)) {
+
+                    arrEncuentrosRechazoMes1.push(new EncuentrosRechazoMes1(element.porcentaje, element.motivo))
+                }
+                if (element.mes == Number(mesBack2) && element.anio == Number(anio2)) {
+
+                    arrEncuentrosRechazoMes2.push(new EncuentrosRechazoMes2(element.porcentaje, element.motivo))
+                }
+
+            });
+            $('#etiquetaPieMesActual').append(etiquetaMesActual);
+            $('#etiquetaPieMes1').append(etiquetaMes1);
+            $('#etiquetaPieMes2').append(etiquetaMes2);
+
+            //console.log(arrEncuentrosRechazo);
+            //console.log(arrEncuentrosRechazoMes1);
+            //console.log(arrEncuentrosRechazoMes2);
+        });
+
+        //--------------------------------------- DOCUMENTOS PROCESADOS VS ACEPTADOS LINEAS
+        function EncuentrosProcesados(label, y) {
+            this.label = label;
+            this.y = y;            
+        };
+        var arrEncuentrosProcesados = [];
+
+        function EncuentrosAceptados(label, y) {
+            this.label = label;
+            this.y = y;            
+        };
+        var arrEncuentrosAceptados = [];
+
+        var url = "/Home/FunGetProcesadasDia";
+        $.get(url, { vFechaIni: fechaIni, vFechaFin: fechaFin }, function (data) {
+
+            //console.log(data);
+
+            data.forEach(function (element) {
+
+                if (element.estatus == "PROCESADOS") {
+
+                    arrEncuentrosProcesados.push(new EncuentrosProcesados(moment(element.dia_fecha).format('YYYY-MM-DD'), element.cantidad))
+                }
+
+                if (element.estatus == "ACEPTADOS") {
+
+                    arrEncuentrosAceptados.push(new EncuentrosAceptados(moment(element.dia_fecha).format('YYYY-MM-DD'), element.cantidad))
+                }               
+
+            });
+
+            //console.log(arrEncuentrosRechazo);
+            //console.log(arrEncuentrosRechazoMes1);
+            
+        });
+
+
+        //------------------------------------------------------CONTROL DE RECEPCION Y FACTURAS DE COMISIONES
+        CanvasJS.addColorSet("greenShades",
+                [//colorSet Array
+                "#2DE589",
+                "#f2b727",
+                "#ff612b",
+                ]);
+
+        var chartCtrolRecepcion = new CanvasJS.Chart("chartControlRecepcion", {
+            animationEnabled: true,
+            colorSet: "greenShades",
+            title: {
+                text: "CONTROL DE RECEPCION Y FACTURAS DE COMISIONES"
+            },
+            axisX: {
+                interval: 1,
+                intervalType: "year",
+                valueFormatString: "YYYY"
+            },
+
+            axisY: {
+                title: "Cantidad de Facturas",
+                valueFormatString: "#,##0.#"
+            },
+
+            toolTip: {
+                shared: true
+            },
+            legend: {
+                reversed: true,
+                verticalAlign: "center",
+                horizontalAlign: "right"
+            },
+            data: [{
+                type: "stackedColumn100",
+                name: "Aceptadas",
+                showInLegend: true,
+                yValueFormatString: "#,##0.# Aceptadas",
+                dataPoints: arrayAceptadas
+            },
+            {
+                type: "stackedColumn100",
+                name: "Rechazadas",
+                showInLegend: true,
+                yValueFormatString: "#,##0.# Rechazadas",
+                dataPoints: arrayRechazadas
+            }
+            ,
+            {
+                type: "stackedColumn100",
+                name: "% Rechazos",
+                showInLegend: true,
+                xValueFormatString: "YYYY",
+                yValueFormatString: "#,##0\"%\"",
+                dataPoints: arrayRechPorcentaje
+            }
+            ]
+        });
+        chartCtrolRecepcion.render();        
+
+        //--------------------CONTROL DE RECEPCION Y FACTURAS DE COMISIONES DIARIO DEL MES EN CURSO
+        var chartCtrolRecepcionDia = new CanvasJS.Chart("chartControlRecepcionDia", {
+            animationEnabled: true,
+            colorSet: "greenShades",
+            title: {
+                text: "CONTROL DE RECEPCION Y FACTURAS DE COMISIONES DIARIO DEL MES EN CURSO"
+            },
+            axisY: {
+                title: "Cantidad de Facturas",
+                valueFormatString: "#,##0.#"
+            },
+            toolTip: {
+                shared: true
+            },
+            legend: {
+                cursor: "pointer",
+                itemclick: toggleDataSeries
+            },
+            data: [{
+                type: "column",
+                name: "Facturas Aceptadas",
+                legendText: "Aceptadas",
+                showInLegend: true,
+                dataPoints: arrayAceptadasDia
+            },
+            {
+                type: "column",
+                name: "Facturas Rechazadas",
+                legendText: "Rechazadas",
+                axisYType: "secondary",
+                showInLegend: true,
+                dataPoints: arrayRechazadasDia
+            }]
+        });
+        chartCtrolRecepcionDia.render();
+
+        function toggleDataSeries(e) {
+            if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                e.dataSeries.visible = false;
+            }
+            else {
+                e.dataSeries.visible = true;
+            }
+            chartCtrolRecepcionDia.render();
+        }
+
+        ////-------------------------------------------------------- CONTROL RECEPCION RECHAZADOS POR MES COMISION
+        var chartMesesComision = new CanvasJS.Chart("chartRechazosMesesComision", {
+            animationEnabled: true,
+            //colorSet: "greenShades",
+            theme: "light2", // "light1", "light2", "dark1", "dark2"
+            title: {
+                text: "Distribución de Comprobantes Rechazados por meses de comisión"
+            },
+            axisY: {
+                title: "Nro. de documentos"
+            },
+            data: [{
+                type: "column",              
+                dataPoints: arrayRechMesComision
+            }]
+        });
+        chartMesesComision.render();
+
+        ////------------------------------------------------------------------------------------------PIE CHARTS
+
+        var chartPieMesCurso = new CanvasJS.Chart("chartPieMesCurso", {
+            animationEnabled: true,
+            title: {
+                text: "DISTRIBUCION DE RECHAZOS DEL MES EN CURSO"
+            },
+            data: [{
+                type: "pie",
+                startAngle: 240,
+                yValueFormatString: "##0.00\"%\"",
+                indexLabel: "{label} {y}",
+                dataPoints: arrEncuentrosRechazoCurso
+            }]
+        });
+        chartPieMesCurso.render();
+
+
+        var chartPieMes1 = new CanvasJS.Chart("chartMotivosRechazo1", {
+            animationEnabled: true,            
+            data: [{
+                type: "pie",
+                startAngle: 240,
+                yValueFormatString: "##0.00\"%\"",
+                indexLabel: "{label} {y}",
+                dataPoints: arrEncuentrosRechazo
+            }]
+        });
+        chartPieMes1.render();
+
+
+
+        var chartPieMes2 = new CanvasJS.Chart("chartMotivosRechazo2", {
+            animationEnabled: true,
+
+            data: [{
+                type: "pie",
+                startAngle: 240,
+                yValueFormatString: "##0.00\"%\"",
+                indexLabel: "{label} {y}",
+                dataPoints: arrEncuentrosRechazoMes1
+            }]
+        });
+        chartPieMes2.render();
+
+
+        var chartPieMes3 = new CanvasJS.Chart("chartMotivosRechazo3", {
+            animationEnabled: true,
+            
+            data: [{
+                type: "pie",
+                startAngle: 240,
+                yValueFormatString: "##0.00\"%\"",
+                indexLabel: "{label} {y}",
+                dataPoints: arrEncuentrosRechazoMes2
+            }]
+        });
+        chartPieMes3.render();
+
+
+        //------------------------------------------------ GRAFICO DE LINEAS PROCESADAS VS ACEPTADAS
+        CanvasJS.addColorSet("redShades",
+                [//colorSet Array
+                "#e95950",
+                "#2DE589",                
+                ]);
+        var chartLineas = new CanvasJS.Chart("chartLinesProcesadasVsAceptadas", {
+            animationEnabled: true,
+            colorSet: "redShades",
+            title: {
+                text: "DOCUMENTOS DE FACTURAS PROCESADOS VS ACEPTADOS"
+            },            
+            axisX: {
+            interval: 1,           
+            },
+            axisY: {
+                title: "Cantidad de Documentos"
+            },
+            toolTip: {
+                shared: true
+            },
+            legend: {
+                cursor: "pointer",                
+            },
+            data: [{
+                type: "spline",
+                name: "Procesados",
+                showInLegend: true,
+                dataPoints: arrEncuentrosProcesados
+            },
+            {
+                type: "spline",
+                name: "Aceptados",
+                showInLegend: true,
+                dataPoints: arrEncuentrosAceptados
+            }]
+        });
+
+        chartLineas.render();
+
+    }
+</script>
+
+<html lang="en">
+
+<body>
+
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <h2><a href="javascript:void(0);" class="btn btn-xs btn-link btn-toggle-fullwidth"><i class="fa fa-arrow-left"></i></a> Dashboard</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row clearfix">
+
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h2>FILTRAR INDICADORES</h2>
+                    @*<ul class="header-dropdown">
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="javascript:void(0);">Action</a></li>
+                                <li><a href="javascript:void(0);">Another Action</a></li>
+                                <li><a href="javascript:void(0);">Something else</a></li>
+                            </ul>
+                        </li>
+                    </ul>*@
+                </div>
+                <div class="body">
+
+                    <div class="row clearfix">
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text">Desde</label>
+                                    <input type="date" id="fechaInicio"
+                                           data-date-autoclose="true" class="form-control" placeholder="FecInicio">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">Hasta</label>
+                                <input type="date" id="fechaFin"
+                                       data-date-autoclose="true" class="form-control" placeholder="FecFin">
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <a class="btn btn-outline-warning" onclick="aplicarFiltrosCalcular()">
+                                    <i class="fa fa-search"></i> Filtrar
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <a asp-action="HistorialCargas" class="btn btn-outline-success" >
+                                    <i class="fa fa-file-excel-o"></i> Ver Cargados
+                                </a>                               
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <a class="btn btn-outline-success" style="float:right"                                   
+                                   href="#largeModal" data-toggle="modal" data-target="#largeModal">
+                                    <i class="fa fa-upload"></i> Cargar CSV
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row clearfix">
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card top_counter">
+                <div class="body">
+                    <div class="icon text-danger"><i class="fa fa-dollar"></i> </div>
+                    <div class="content">
+                        <div class="text">Monto Total a Pagar</div>
+                        <h5 id="labelMontoAPagar" class="number"></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card top_counter">
+                <div class="body">
+                    <div class="icon text-success"><i class="fa fa-money"></i> </div>
+                    <div class="content">
+                        <div class="text">Monto Pagado</div>
+                        <h5 id="labelTotalPagado" class="number"></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-6">
+            <div class="card top_counter">
+                <div class="body">
+                    <div class="icon text-warning"><i class="fa fa-file-archive-o"></i> </div>
+                    <div class="content">
+                        <div class="text">Docs Esperados</div>
+                        <h5 id="labelDocsEsperados" class="number"></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-12">
+            <div class="card top_counter">
+                <div class="body">
+                    <div class="icon text-success"><i class="fa fa-check"></i> </div>
+                    <div class="content">
+                        <div class="text">Docs Atendidos</div>
+                        <h5 id="labelDocsAtendidos" class="number"></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-12">
+            <div class="card top_counter">
+                <div class="body">
+                    <div class="icon text-success"><i class="fa fa-calculator"></i> </div>
+                    <div class="content">
+                        <div class="text">% Media Mensual</div>
+                        <h5 id="labelMediaMensual" class="number"></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row clearfix">
+
+
+        <div class="col-lg-6 col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Montos Pendientes y Pagados por Años Encontrados</h2>
+                </div>
+                <div class="body">
+
+                    <div class="wrapper">
+                        <div id="chartMontos" style="height: 370px; width: 100%;">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-6 col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Porcentajes Correspondientes a los Montos por Años Encontrados</h2>
+                </div>
+                <div class="body">
+
+                    <div class="wrapper">
+                        <div id="chartPorcentajes" style="height: 370px; width: 100%;">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h2>CONTROL DE RECEPCION Y FACTURAS DE COMISIONES</h2>
+                </div>
+                <div class="body">
+
+                    <div class="wrapper">
+                        <div id="chartControlRecepcion" style="height: 370px; width: 100%;">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h2>CONTROL DE RECEPCION Y FACTURAS DE COMISIONES DIARIO DEL MES EN CURSO</h2>
+                </div>
+                <div class="body">
+
+                    <div class="wrapper">
+                        <div id="chartControlRecepcionDia" style="height: 370px; width: 100%;">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Grafico de Documentos PROCESADOS Vs. ACEPTADOS</h2>
+                </div>
+                <div class="body">
+
+                    <div id="chartLinesProcesadasVsAceptadas" style="height: 370px; width: 100%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h2>DISTRIBUCION DE RECHAZOS DEL MES EN CURSO</h2>
+                </div>
+                <div class="body">
+
+                    <div class="wrapper">
+                        <div id="chartPieMesCurso" style="height: 370px; width: 100%;">
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="footer">
+                    <h5>Leyenda</h5>
+                    <div class="wrapper">
+                        <span class="badge badge-default mb-2"><strong>R1:</strong> Datos de Banco Incompletos</span>
+                        <span class="badge badge-primary mb-2"><strong>R3:</strong> Importe errado o mal ubicado</span>
+                        <span class="badge badge-success mb-2"><strong>R4:</strong> Envían documentos incorrectos</span>
+                        <span class="badge badge-info mb-2"><strong>R8:</strong> Envían por 2° vez el documento</span>
+                        <span class="badge badge-warning mb-2"><strong>R9:</strong> RUC de boleta no corresponde con BD</span>
+                        <span class="badge badge-danger mb-2"><strong>R10:</strong> RUC empresa</span>
+                        <span class="badge badge-light mb-2"><strong>R11:</strong> Cuenta de comisiones cancelada o inactiva</span>
+                        <span class="badge badge-primary mb-2"><strong>R12:</strong> No tiene cta detraccion</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-4 col-md-12">
+            <div class="card">
+                <div class="header" id="etiquetaPieMes2">
+                    
+                </div>
+                <div class="body">
+
+                    <div class="wrapper">
+                        <div id="chartMotivosRechazo3" style="height: 350px; width: 100%;">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-4 col-md-12">
+            <div class="card">
+                <div class="header" id="etiquetaPieMes1">
+                    
+                </div>
+                <div class="body">
+                    <div class="wrapper">
+                        <div id="chartMotivosRechazo2" style="height: 350px; width: 100%;">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-12">
+            <div class="card">
+                <div class="header" id="etiquetaPieMesActual">
+                    
+                </div>
+                <div class="body">
+                    <div class="wrapper">
+
+                        <div id="chartMotivosRechazo1" style="height: 350px; width: 100%;">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h2>DISTRIBUCION DE COMPROBANTES RECHAZADOS POR MESES DE COMISION</h2>
+                </div>
+                <div class="body">
+
+                    <div id="chartRechazosMesesComision" style="height: 370px; width: 100%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+
+
+
+
+    </div>
+
+
+
+
+
+    <div class="row clearfix">
+        
+        <div class="col-lg-12 col-md-12">
+            <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="title" id="largeModalLabel">Cargar Consolidado de Data</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            
+
+                            <div class="form-group">
+
+                                <h5>Formato de columnas</h5>
+                                <p>A continuacion se presenta un extracto de ejemplo del formato que debe tener la data para ser cargada correctamente.</p>
+                                <img src="~/images/FormatoConsolidado.JPG" class="img-fluid" alt="Formato">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Sólo Nombre de Archivo CSV Sin la Extension ubicado en carpeta webpymes(172.17.1.51)\\FacturasXML\\</label>
+                                <input id="txtCsvConsolidado" type="text" class="form-control">
+                            </div>
+                          
+
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <a class="btn btn-outline-success m-b-15" id="btnCargarCSV" onclick="cargarCSV()"><i class="fa fa-upload"></i>Cargar</a>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

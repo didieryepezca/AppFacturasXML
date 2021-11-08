@@ -1,0 +1,147 @@
+@model IEnumerable<DatosXML.Models.TB_FACTURA_NO_LEIDA>
+
+@{
+    ViewData["Title"] = "FacNonRead";
+}
+
+
+<style>
+    table tbody tr td {
+        font-size: 12px;
+    }
+
+    table thead tr th {
+        font-size: 12px;
+    }
+
+    #loading {
+    /*width: 100%;*/
+    /*height: 100%;*/
+    top: 0px;
+    left: 0px;
+    position: fixed;
+    display: block;
+    opacity: 0.7;
+    background-color: #fff;
+    z-index: 99;
+    text-align: center;
+    }
+
+    #loadingImage {
+    position: absolute;
+    top: 200px;
+    left: 720px;
+    z-index: 100;
+    }
+</style>
+
+
+<script type="text/javascript">
+
+    window.onload = load;
+
+    function load() {
+
+        $(document).ready(function () {
+
+            console.log("window loaded");
+            $('#loadingImage').hide();
+
+        });
+    }
+
+</script>
+
+<form asp-action="FacNonRead" method="post">
+
+    <div class="card">
+        <div class="header">
+            <h2>Busqueda <small>Encontrar facturas ERRADAS segun Fecha de Ingreso:</small></h2>
+        </div>
+        <div class="body">
+
+            <div id="loading">
+                <img id="loadingImage" src="~/images/cargando.gif" />
+            </div>
+
+            <div class="row clearfix">
+
+                @{
+
+                    string fecha_ingreso = ViewBag.fecha_hoy;
+
+                    if (fecha_ingreso.Equals("0001-01-01"))
+                    {
+                        fecha_ingreso = DateTime.Today.ToString("yyyy-MM-dd");
+                    }
+                }
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <input type="text" name="fecha_ingreso" value="@fecha_ingreso"
+                               data-provide="datepicker"
+                               data-date-format="yyyy-mm-dd"
+                               data-date-autoclose="true" class="form-control" placeholder="Seleccione">
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        @{
+                            var search = 'B';
+                        }
+                        <button type="submit" value="@search" name="accion" class="btn btn-primary"><i class="fa fa-search"></i> <span>Buscar</span></button>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <div class="body">
+            <div class="table-responsive">
+
+                <table id="table_id" class="table table-bordered table-striped table-hover dataTable js-exportable">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.FECHA_INGRESO)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NOMBRE_ARCHIVO)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MENSAJE_ERROR)
+                            </th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FECHA_INGRESO)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NOMBRE_ARCHIVO)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MENSAJE_ERROR)
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+</form>
